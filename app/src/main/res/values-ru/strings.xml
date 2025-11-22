@@ -11,4 +11,6 @@
     <string name="descriptionNight_mode">Ночной режим</string>
     <string name="descriptionScreen_format">Формат экрана</string>
     <string name="descriptionVersion">Версия</string>
+    <string name="theme_light">Светлая тема</string>
+    <string name="theme_dark">Тёмная тема</string>
 </resources>

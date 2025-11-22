@@ -1,5 +1,6 @@
 package com.example.resources;
 
+import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.graphics.Insets;
@@ -44,7 +46,41 @@ public class MainActivity extends AppCompatActivity {
         descriptionLanguage.setTypeface(tf);
         TextView textLanguage = findViewById(R.id.textLang);
         textLanguage.setText(getResources().getString(R.string.language));
+
+        TextView descriptionNight = findViewById(R.id.textVNight);
+        descriptionNight.setText(getResources().getString(R.string.descriptionNight_mode));
+        descriptionNight.setTypeface(tf);
+        TextView textNight = findViewById(R.id.textNight);
+        textNight.setTypeface(tf);
+        updateNightModeText(textNight);
     }
+
+    private void updateNightModeText(TextView textNight) {
+        int uiMode = getResources().getConfiguration().uiMode &
+                android.content.res.Configuration.UI_MODE_NIGHT_MASK;
+
+        int textResId;
+        if (uiMode == android.content.res.Configuration.UI_MODE_NIGHT_YES) {
+            textResId = R.string.theme_dark;
+        } else {
+            textResId = R.string.theme_light;
+        }
+        textNight.setText(getResources().getString(textResId));
+    }
+
+    private void refreshTexts() {
+        TextView textNight = findViewById(R.id.textNight);
+        updateNightModeText(textNight);
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // При смене uiMode (день/ночь) обновляем текст
+        refreshTexts();
+    }
+
+
 
     private void loadImageFromAsset(ImageView image, String fileName) {
         try {

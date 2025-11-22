@@ -13,4 +13,6 @@
     <string name="descriptionScreen_format">Screen format</string>
     <string name="descriptionVersion">Version</string>
     <string name="textview" translatable="false">TextView</string>
+    <string name="theme_light">Light theme</string>
+    <string name="theme_dark">Dark theme</string>
 </resources>
